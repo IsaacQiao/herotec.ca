@@ -7,17 +7,30 @@
 module.exports = {
   /* Your site config here */
   plugins: [
-    'gatsby-plugin-layout',
     'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          'Roboto',
-          'Aleo',
-          'Open Sans',
+          'Monserat',
+          'Mulish',
         ],
         display: 'swap',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/locales`,
+        name: 'locale',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-i18next',
+      options: {
+        localeJsonSourceName: 'locale', // name given to `gatsby-source-filesystem` plugin.
+        languages: ['en', 'fr'],
+        defaultLanguage: 'en',
       },
     },
   ],
