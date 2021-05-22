@@ -9,6 +9,13 @@ module.exports = {
   plugins: [
     'gatsby-plugin-styled-components',
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/locales`,
+        name: 'locale',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
@@ -16,13 +23,6 @@ module.exports = {
           'Mulish',
         ],
         display: 'swap',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/locales`,
-        name: 'locale',
       },
     },
     {
