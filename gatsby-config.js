@@ -12,7 +12,7 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          'Monserat',
+          'Montserrat',
           'Mulish',
         ],
         display: 'swap',
