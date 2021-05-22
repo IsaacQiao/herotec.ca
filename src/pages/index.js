@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Trans, Link } from 'gatsby-plugin-react-i18next';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import 'normalize.css';
 
 const StyledMain = styled.main`
+  position: relative;
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
@@ -16,13 +18,13 @@ const StyledMain = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
 
   header {
     position: relative;
     width: 85%;
     display: flex;
     justify-content: space-between;
+    margin-top: 45px;
   }
 
   section {
@@ -33,7 +35,7 @@ const StyledMain = styled.main`
 
   footer {
     width: 85%;
-    position: relative;
+    font-size: 12px;
   }
 
   input {
@@ -63,17 +65,26 @@ const StyledMain = styled.main`
     border-radius: 28px;
     border: none;
     cursor: pointer;
+    svg {
+      width: 24px;
+    }
   }
 
   a {
+    color: white;
     text-decoration: none;
-    &:visited {
-      color: white;
-    }
   }
 
   h1 {
     font-family: 'Montserrat';
+    font-size: 32px;
+  }
+
+  .gatsby-image-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
   }
 
   .links {
@@ -94,17 +105,15 @@ const StyledMain = styled.main`
     position: relative;
     max-width: 472px;
     margin-top: 10%;
-    z-index: 2;
-  }
-
-  .shape {
   }
 
   .top {
+    position: relative;
     max-width: 472px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid white;
+    z-index: 2;
     div {
       display: flex;
       align-items: center;
@@ -116,9 +125,11 @@ const StyledMain = styled.main`
   }
 
   .bottom {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
-    margin: 13px 0;    
+    margin: 13px 0;
   }
 
   .description {
@@ -129,19 +140,54 @@ const StyledMain = styled.main`
   }
 
   @media(max-width: 480px) {
-    font-size: 12px;
+    overflow: hidden;
+
+    footer {
+      font-size: 8px;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    input {
+      height: 33px;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      right: 8px;
+      top: 3px;
+      width: 24px;
+      height: 24px;
+      svg {
+        width: 13px;
+      }
+    }
+
+    .input-wrapper {
+      max-width: 293px;
+    }
+
+    .gatsby-image-wrapper {
+      width: 1319px;
+      left: 60px;
+      top: 196px;
+    }
 
     #hero {
       position: absolute;
-      top: 52vh;
+      top: 43vh;
       left: 0;
       margin: 0;
     }
   }
 `;
 
-const Home = ({ pageContext: { i18n } }) => {
+const Home = ({ pageContext: { i18n }, data: { shape } }) => {
   const actualLang = i18n.language;
+  const image = getImage(shape);
   return (
     <StyledMain>
       <header>
@@ -176,15 +222,17 @@ const Home = ({ pageContext: { i18n } }) => {
 
         </div>
         <div className='links'>
-          <div className='link-wrapper' id='hero'>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M16.67 13.13C18.04 14.06 19 15.32 19 17V20H23V17C23 14.82 19.43 13.53 16.67 13.13Z' fill='white' />
-              <path d='M15 12C17.21 12 19 10.21 19 8C19 5.79 17.21 4 15 4C14.53 4 14.09 4.1 13.67 4.24C14.5 5.27 15 6.58 15 8C15 9.42 14.5 10.73 13.67 11.76C14.09 11.9 14.53 12 15 12Z' fill='white' />
-              <path d='M9 12C11.21 12 13 10.21 13 8C13 5.79 11.21 4 9 4C6.79 4 5 5.79 5 8C5 10.21 6.79 12 9 12ZM9 6C10.1 6 11 6.9 11 8C11 9.1 10.1 10 9 10C7.9 10 7 9.1 7 8C7 6.9 7.9 6 9 6Z' fill='white' />
-              <path d='M9 13C6.33 13 1 14.34 1 17V20H17V17C17 14.34 11.67 13 9 13ZM15 18H3V17.01C3.2 16.29 6.3 15 9 15C11.7 15 14.8 16.29 15 17V18Z' fill='white' />
-            </svg>
-            <span>HERO PRO Service</span>
-          </div>
+          <a href='http://www.hero-pro.biz'>
+            <div className='link-wrapper' id='hero'>
+              <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M16.67 13.13C18.04 14.06 19 15.32 19 17V20H23V17C23 14.82 19.43 13.53 16.67 13.13Z' fill='white' />
+                <path d='M15 12C17.21 12 19 10.21 19 8C19 5.79 17.21 4 15 4C14.53 4 14.09 4.1 13.67 4.24C14.5 5.27 15 6.58 15 8C15 9.42 14.5 10.73 13.67 11.76C14.09 11.9 14.53 12 15 12Z' fill='white' />
+                <path d='M9 12C11.21 12 13 10.21 13 8C13 5.79 11.21 4 9 4C6.79 4 5 5.79 5 8C5 10.21 6.79 12 9 12ZM9 6C10.1 6 11 6.9 11 8C11 9.1 10.1 10 9 10C7.9 10 7 9.1 7 8C7 6.9 7.9 6 9 6Z' fill='white' />
+                <path d='M9 13C6.33 13 1 14.34 1 17V20H17V17C17 14.34 11.67 13 9 13ZM15 18H3V17.01C3.2 16.29 6.3 15 9 15C11.7 15 14.8 16.29 15 17V18Z' fill='white' />
+              </svg>
+              <span>HERO PRO Service</span>
+            </div>
+          </a>
           <Link to='/' language={actualLang === 'en' ? 'fr' : 'en'}>
             <div className='link-wrapper'>
               <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -207,7 +255,7 @@ const Home = ({ pageContext: { i18n } }) => {
         <div className='input-wrapper'>
           <input type='text' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
           <button>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+            <svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
               <path d='M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z' fill='white'/>
             </svg>
           </button>
@@ -215,20 +263,24 @@ const Home = ({ pageContext: { i18n } }) => {
       </section>
       <footer>
         <div className='top'>
-          <div>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 3.19V11.99Z' fill='white'/>
-            </svg>
-            <span><Trans>Terms & Conditions</Trans>
-            </span>
-          </div>
-          <div>
-            <span><Trans>Follow us at</Trans>
-            </span>
-            <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z' fill='white'/>
-            </svg>
-          </div>
+          <a href='http://privacy.herotec.ca/'>
+            <div>
+              <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 3.19V11.99Z' fill='white'/>
+              </svg>
+              <span><Trans>Terms & Conditions</Trans>
+              </span>
+            </div>
+          </a>
+          <a href='https://www.linkedin.com/company/hero-tech'>
+            <div>
+              <span><Trans>Follow us at</Trans>
+              </span>
+              <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z' fill='white'/>
+              </svg>
+            </div>
+          </a>
         </div>
         <div className='bottom'>
           <div><svg width='20' height='19' viewBox='0 0 20 19' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -243,6 +295,7 @@ const Home = ({ pageContext: { i18n } }) => {
 
           </div>
         </div>
+        <GatsbyImage image={image} alt='background shape'/>
       </footer>
     </StyledMain>
   );
@@ -259,6 +312,11 @@ export const query = graphql`
           data
           language
         }
+      }
+    }
+    shape: file(relativePath: {eq: "shape.png"}) {
+      childImageSharp {
+        gatsbyImageData(placeholder: DOMINANT_COLOR)
       }
     }
   }
