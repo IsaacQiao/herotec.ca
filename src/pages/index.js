@@ -316,7 +316,7 @@ export const query = graphql`
     }
     shape: file(relativePath: {eq: "shape.png"}) {
       childImageSharp {
-        gatsbyImageData(placeholder: DOMINANT_COLOR)
+        gatsbyImageData(placeholder: BLURRED)
       }
     }
   }
