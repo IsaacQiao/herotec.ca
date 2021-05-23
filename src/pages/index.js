@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Trans, Link } from 'gatsby-plugin-react-i18next';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { MdSecurity } from 'react-icons/md';
+import { HiOutlineMail } from 'react-icons/hi';
+import { SiLinkedin } from 'react-icons/si';
+import { FaHeart } from 'react-icons/fa';
 import 'normalize.css';
 
 const StyledMain = styled.main`
@@ -36,6 +40,9 @@ const StyledMain = styled.main`
   footer {
     width: 85%;
     font-size: 12px;
+    svg {
+      font-size: 1.5em;
+    }
   }
 
   input {
@@ -56,6 +63,9 @@ const StyledMain = styled.main`
 
   button {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     right: 14px;
     top: 7.5px;
     width: 46px;
@@ -65,14 +75,17 @@ const StyledMain = styled.main`
     border-radius: 28px;
     border: none;
     cursor: pointer;
-    svg {
-      width: 24px;
-    }
+    color: white;
+    font-size: 1.5rem;
   }
 
   a {
     color: white;
     text-decoration: none;
+  }
+
+  p {
+    margin: 0;
   }
 
   h1 {
@@ -120,7 +133,7 @@ const StyledMain = styled.main`
       margin-bottom: 13px;
     }
     span {
-      padding: 0 17px;
+      padding-right:  7px;
     }
   }
 
@@ -132,11 +145,8 @@ const StyledMain = styled.main`
     margin: 13px 0;
   }
 
-  .description {
-    padding: 0 17px;
-    p {
-      margin: 0;
-    }
+  .mobile-hidden {
+    padding-right: 17px;
   }
 
   @media(max-width: 480px) {
@@ -161,9 +171,6 @@ const StyledMain = styled.main`
       top: 3px;
       width: 24px;
       height: 24px;
-      svg {
-        width: 13px;
-      }
     }
 
     .input-wrapper {
@@ -174,6 +181,16 @@ const StyledMain = styled.main`
       width: 1319px;
       left: 60px;
       top: 196px;
+    }
+
+    .description {
+      padding: 0;
+    }
+
+    .mobile-hidden {
+      display: none;
+      padding: 0;
+
     }
 
     #hero {
@@ -219,7 +236,6 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
               </filter>
             </defs>
           </svg>
-
         </div>
         <div className='links'>
           <a href='http://www.hero-pro.biz'>
@@ -255,9 +271,7 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
         <div className='input-wrapper'>
           <input type='text' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
           <button>
-            <svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z' fill='white'/>
-            </svg>
+            <HiOutlineMail/>
           </button>
         </div>
       </section>
@@ -265,10 +279,8 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
         <div className='top'>
           <a href='http://privacy.herotec.ca/'>
             <div>
-              <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                <path d='M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 3.19V11.99Z' fill='white'/>
-              </svg>
-              <span><Trans>Terms & Conditions</Trans>
+              <MdSecurity className='mobile-hidden'/>
+              <span className='icon-mobile'><Trans>Terms & Conditions</Trans>
               </span>
             </div>
           </a>
@@ -276,23 +288,17 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
             <div>
               <span><Trans>Follow us at</Trans>
               </span>
-              <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                <path d='M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z' fill='white'/>
-              </svg>
+              <SiLinkedin/>
             </div>
           </a>
         </div>
         <div className='bottom'>
-          <div><svg width='20' height='19' viewBox='0 0 20 19' fill='none' xmlns='http://www.w3.org/2000/svg'>
-            <path d='M10 18.35L8.55 17.03C3.4 12.36 0 9.27 0 5.5C0 2.41 2.42 0 5.5 0C7.24 0 8.91 0.81 10 2.08C11.09 0.81 12.76 0 14.5 0C17.58 0 20 2.41 20 5.5C20 9.27 16.6 12.36 11.45 17.03L10 18.35Z' fill='white'/>
-          </svg>
-          </div>
+          <FaHeart className='mobile-hidden'/>
           <div className='description'>
             <p><Trans>Hero Tech is an equal opportunity workplace</Trans></p>
             <p><Trans>Hero is a pending registered trademark</Trans></p>
             <p><Trans>Powered by Hero Pro</Trans></p>
             <p><Trans>Hero Pro is an independent company owned by Hero Pro Corp</Trans></p>
-
           </div>
         </div>
         <GatsbyImage image={image} alt='background shape'/>
