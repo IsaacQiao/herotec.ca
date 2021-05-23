@@ -9,20 +9,27 @@ module.exports = {
   plugins: [
     'gatsby-plugin-styled-components',
     {
-      resolve: 'gatsby-plugin-google-fonts',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        fonts: [
-          'Monserat',
-          'Mulish',
-        ],
-        display: 'swap',
+        path: `${__dirname}/locales`,
+        name: 'locale',
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/locales`,
-        name: 'locale',
+        path: `${__dirname}/src/assets`,
+        name: 'asset',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: [
+          'Montserrat',
+          'Mulish',
+        ],
+        display: 'swap',
       },
     },
     {
@@ -33,5 +40,8 @@ module.exports = {
         defaultLanguage: 'en',
       },
     },
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
   ],
 };
