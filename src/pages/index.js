@@ -60,6 +60,7 @@ const StyledMain = styled.main`
     font-weight: 700;
     font-size: 15px;
     padding-left: 20px;
+    appearance: none;
     &::placeholder {
       color: black;
     }
