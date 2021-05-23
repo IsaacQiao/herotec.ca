@@ -8,6 +8,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { SiLinkedin } from 'react-icons/si';
 import { FaHeart } from 'react-icons/fa';
 import Div100vh from 'react-div-100vh';
+import { Helmet } from 'react-helmet';
 import 'normalize.css';
 
 const StyledMain = styled.main`
@@ -30,12 +31,14 @@ const StyledMain = styled.main`
     display: flex;
     justify-content: space-between;
     margin-top: 45px;
+    z-index: 2;
   }
 
   section {
     position: relative;
     top: -100px;
     width: 85%;
+    z-index: 2;
   }
 
   footer {
@@ -54,11 +57,11 @@ const StyledMain = styled.main`
     box-sizing: border-box;
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
     border-radius: 28px;
+    font-weight: 700;
+    font-size: 15px;
+    padding-left: 20px;
     &::placeholder {
       color: black;
-      font-weight: 700;
-      font-size: 15px;
-      padding-left: 20px;
     }
   }
 
@@ -98,7 +101,7 @@ const StyledMain = styled.main`
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 1;
+    /* z-index: -1; */
   }
 
   .links {
@@ -208,6 +211,11 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
   const image = getImage(shape);
   return (
     <Div100vh>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Hero</title>
+        <link rel='canonical' href='http://www.herotec.ca' />
+      </Helmet>
       <StyledMain>
         <header>
           <div className='logo'>
@@ -271,7 +279,7 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
             </h1>
           </div>
           <div className='input-wrapper'>
-            <input type='text' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
+            <input type='text' name='email' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
             <button>
               <HiOutlineMail/>
             </button>
