@@ -81,6 +81,9 @@ const StyledMain = styled.main`
     cursor: pointer;
     color: white;
     font-size: 1.5rem;
+    &:hover {
+      background: #FA7100
+    }
   }
 
   a {
