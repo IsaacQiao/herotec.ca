@@ -285,7 +285,7 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
           </div>
           <div className='input-wrapper'>
             <input type='text' name='email' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
-            <button>
+            <button type='submit' name='submit'>
               <HiOutlineMail/>
             </button>
           </div>
