@@ -72,6 +72,7 @@ const StyledMain = styled.main`
     top: 7.5px;
     width: 46px;
     height: 46px;
+    appearance: none;
     background: #FF714B;
     box-shadow: 0px 4px 4px rgba(50, 0, 0, 0.25);
     border-radius: 28px;
@@ -79,10 +80,15 @@ const StyledMain = styled.main`
     cursor: pointer;
     color: white;
     font-size: 1.5rem;
-    appearance: none;
     &:hover {
       background: #FA7100
     }
+  }
+
+  button span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   a {
@@ -280,7 +286,9 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
           <div className='input-wrapper'>
             <input type='text' name='email' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
             <button type='submit' name='submit'>
-              <HiOutlineMail/>
+              <span>
+                <HiOutlineMail/>
+              </span>
             </button>
           </div>
         </section>
