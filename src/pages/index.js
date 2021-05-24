@@ -68,9 +68,6 @@ const StyledMain = styled.main`
 
   button {
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     right: 14px;
     top: 7.5px;
     width: 46px;
@@ -106,7 +103,6 @@ const StyledMain = styled.main`
     position: absolute;
     bottom: 0;
     right: 0;
-    /* z-index: -1; */
   }
 
   .links {
@@ -174,8 +170,6 @@ const StyledMain = styled.main`
     }
 
     button {
-      display: flex;
-      align-items: center;
       right: 8px;
       top: 3px;
       width: 24px;
