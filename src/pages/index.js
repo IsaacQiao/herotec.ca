@@ -175,6 +175,7 @@ const StyledMain = styled.main`
 
     input {
       height: 33px;
+      font-size: 11px;
     }
 
     button {
@@ -182,6 +183,7 @@ const StyledMain = styled.main`
       top: 4px;
       width: 24px;
       height: 24px;
+      font-size: 1rem;
     }
 
     .input-wrapper {
