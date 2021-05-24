@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import { Trans, Link } from 'gatsby-plugin-react-i18next';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { MdSecurity } from 'react-icons/md';
-import { HiOutlineMail } from 'react-icons/hi';
+// import { HiOutlineMail } from 'react-icons/hi';
 import { SiLinkedin } from 'react-icons/si';
 import { FaHeart } from 'react-icons/fa';
 import Div100vh from 'react-div-100vh';
@@ -89,6 +89,7 @@ const StyledMain = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
   }
 
   a {
@@ -177,7 +178,7 @@ const StyledMain = styled.main`
 
     button {
       right: 8px;
-      top: 3px;
+      top: 4px;
       width: 24px;
       height: 24px;
     }
@@ -286,9 +287,9 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
           <div className='input-wrapper'>
             <input type='text' name='email' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
             <button type='submit' name='submit'>
-              <span>
+              {/* <span>
                 <HiOutlineMail/>
-              </span>
+              </span> */}
             </button>
           </div>
         </section>
