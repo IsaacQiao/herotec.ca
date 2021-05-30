@@ -287,14 +287,14 @@ const Home = ({ pageContext: { i18n }, data: { shape } }) => {
               <Trans>So are your WORKPLACES</Trans>
             </h1>
           </div>
-          <div className='input-wrapper'>
-            <input type='text' name='email' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
-            <button type='submit' name='submit'>
+          <form className='input-wrapper' action="https://herotec.us6.list-manage.com/subscribe/post?u=be9475440326f58200d2b8a2e&amp;id=7ed8bc684a" method="post" target="_blank" novalidate>
+            <input type='email' name='EMAIL' placeholder={actualLang === 'en' ? 'Subscribe to HERO' : 'Abonnez-vous à HERO'}/>
+            <button type='submit' value="Subscribe" name="subscribe">
               <span>
                 <HiOutlineMail/>
               </span>
             </button>
-          </div>
+          </form>
         </section>
         <footer>
           <div className='top'>
